@@ -256,7 +256,7 @@ namespace BridgeASMX
 
 
             var sfd = new SaveFileDialog();
-            sfd.Filter = "Javscript files (*.js)|*.js|All files (*.*)|*.*|";
+            sfd.Filter = "Javscript files (*.js)|*.js|All files (*.*)|*.*";
             sfd.ShowDialog();
 
             if (!string.IsNullOrEmpty(sfd.FileName))
