@@ -31,17 +31,8 @@ namespace BridgeASMX
                 _Methods = parser.GetMethods();
                 BindMethodsToListBox();
 
-
-                if (_ComplexTypes.Length > 0 && _Methods.Length > 0)
-                {
-                    btnSaveFile.Enabled = true;
-                    btnPreview.Enabled = true;
-                }
-                else
-                {
-                    btnSaveFile.Enabled = false;
-                    btnPreview.Enabled = false;
-                }
+                btnSaveFile.Enabled = true;
+                btnPreview.Enabled = true;
 
             }
             catch (Exception ex)
@@ -54,6 +45,7 @@ namespace BridgeASMX
         private void BindMethodsToListBox()
         {
             chblMethods.Items.Clear();
+            chblMethods.DataSource = null;
             foreach (var method in _Methods)
             {
                 chblMethods.DisplayMember = "MethodName";
@@ -64,6 +56,7 @@ namespace BridgeASMX
         private void BindComplexTypeInfosToListBox()
         {
             lbModels.Items.Clear();
+            lbModels.DataSource = null;
             lbModels.DataSource = _ComplexTypes;
         }
 
