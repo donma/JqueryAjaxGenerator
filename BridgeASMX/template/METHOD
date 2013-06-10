@@ -1,0 +1,36 @@
+﻿function #NAME#(#IPARAS#successFunc,errorFunc)
+{
+    /// <summary>#DESC#</summary>
+#IPARASCOMMENTS#   /// <param name="successFunc" type="function">Success Function</param>
+    /// <param name="errorFunc" type="function">Error Function</param>
+    /// <returns type="#RTYPE#">#RVALUENAME#</returns>
+    var $res = #RETURN#;
+    $.ajax({
+        type: "POST",
+        url: "#PATH#/#NAME#",
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        cache: false,
+        dataType: 'json',
+        data: #RDATAS#,
+        success: function (data) {
+            if (data.hasOwnProperty("d")) {
+                $res = data.d;
+				if(successFunc!=null)
+                successFunc(data.d);
+            }
+            else{
+                $res = data;
+				if(successFunc!=null)
+                successFunc(data);
+            }
+        },
+        error:function(){
+            if(errorFunc!=null)
+				errorFunc();
+        }
+
+
+    });
+    return  $res;
+}

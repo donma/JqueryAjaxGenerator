@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="jq.data.js"></script>
+</head>
+<body>
+
+    <div style="background-color: #FEFFAF">
+        <ul id="ul_AllUsers"></ul>
+        <input value="Get All Users" type="button" onclick="btnGetAllUser_click()" />
+    </div>
+
+    <div style="background-color: #AFFFD8">
+        <input value="Add User" type="button" onclick="btnAddUser_click()" />
+    </div>
+
+    <div style="background-color: #D4E6F8">
+        id:<input type="text" id="input_userId" />
+        <input value="Add User" type="button" onclick="btnGetOneUser_click()" />
+    </div>
+
+    <div style="background-color: #FFCDE5">
+        <input value="Edit Users" type="button" onclick="btnUpdateUser_click()" />
+    </div>
+
+    <script>
+
+        function ConvertToDate(srcDate) {
+            var ms = parseInt(srcDate.match(/\((\d+)\)/)[1]);
+            return new Date(ms);
+        }
+
+        function btnUpdateUser_click() {
+            var user1 = new User();
+            user1.Id = '1';
+            user1.Name = "ModifyUser1";
+            user1.Age = 100;
+            user1.Birth = new Date("2013/12/21 19:16:46");
+
+            var user2 = new User();
+            user2.Id = '2';
+            user2.Name = "ModifyUser2";
+            user2.Age = 101;
+            user2.Birth = new Date("2013/12/22 12:34:56");
+
+
+            UpdateUsers([user1, user2]);
+
+            //Update User list to check
+            btnGetAllUser_click();
+
+        }
+
+        function btnGetOneUser_click() {
+            GetUserById($('#input_userId').val(), function (user) {
+                if (user != null) {
+                    alert("Name:" + user.Name + "\n" +
+                        "Age:" + user.Age + "\n" +
+                        "Birth:" + ConvertToDate(user.Birth).toString() + "\n");
+                } else {
+                    alert('No Data!');
+                }
+            });
+
+        }
+
+        function btnAddUser_click() {
+            var newUser = new User();
+            newUser.Name = "TestNewUser1";
+            newUser.Birth = new Date("2012/12/21");
+            newUser.Age = 100;
+            AddUser(newUser, function (msg) {
+                alert(msg);
+            });
+
+        }
+
+        function btnGetAllUser_click() {
+            var allUsers = GetAllUsers();
+
+            $('#ul_AllUsers').empty();
+
+            for (var i = 0; i < allUsers.length; i++) {
+                $('#ul_AllUsers').append('<li>' + "Id:" + allUsers[i].Id + " ,Name:" + allUsers[i].Name + " ,Age:" + allUsers[i].Age+" ,Birth:"+ ConvertToDate(allUsers[i].Birth)+ '</li>');
+            }
+        }
+
+    </script>
+
+
+</body>
+</html>
