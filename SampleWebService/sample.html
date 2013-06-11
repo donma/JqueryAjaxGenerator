@@ -25,7 +25,21 @@
         <input value="Edit Users" type="button" onclick="btnUpdateUser_click()" />
     </div>
 
+
+    <div style="background-color: #FF7573">
+        <input value="Date Convert" type="button" onclick="btnDateConvert_click()" />
+    </div>
+
     <script>
+
+        function btnDateConvert_click() {
+            var user = GetUserById('1');
+            user.Name = "xxx";
+            user.Birth = ConvertToDate(user.Birth);
+            UpdateUsers([user]);
+            btnGetAllUser_click();
+        }
+
 
         function ConvertToDate(srcDate) {
             var ms = parseInt(srcDate.match(/\((\d+)\)/)[1]);
@@ -83,7 +97,7 @@
             $('#ul_AllUsers').empty();
 
             for (var i = 0; i < allUsers.length; i++) {
-                $('#ul_AllUsers').append('<li>' + "Id:" + allUsers[i].Id + " ,Name:" + allUsers[i].Name + " ,Age:" + allUsers[i].Age+" ,Birth:"+ ConvertToDate(allUsers[i].Birth)+ '</li>');
+                $('#ul_AllUsers').append('<li>' + "Id:" + allUsers[i].Id + " ,Name:" + allUsers[i].Name + " ,Age:" + allUsers[i].Age + " ,Birth:" + ConvertToDate(allUsers[i].Birth) + '</li>');
             }
         }
 
