@@ -44,8 +44,8 @@ namespace BridgeASMX
 
         private void BindMethodsToListBox()
         {
-            chblMethods.Items.Clear();
             chblMethods.DataSource = null;
+            chblMethods.Items.Clear();
             foreach (var method in _Methods)
             {
                 chblMethods.DisplayMember = "MethodName";
@@ -55,8 +55,9 @@ namespace BridgeASMX
 
         private void BindComplexTypeInfosToListBox()
         {
-            lbModels.Items.Clear();
             lbModels.DataSource = null;
+            lbModels.Items.Clear();
+            lbModels.DisplayMember = "Name";
             lbModels.DataSource = _ComplexTypes;
         }
 
