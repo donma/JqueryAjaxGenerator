@@ -1,4 +1,4 @@
-JqueryAjaxGenerator
+NO2AjaxGenerator
 ===================
 
 .Net WebService is something I find very convenience, service side of lots project on hand has adopted this technique.
