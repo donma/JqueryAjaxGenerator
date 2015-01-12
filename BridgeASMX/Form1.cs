@@ -68,6 +68,7 @@ namespace BridgeASMX
 
         private void GenCode()
         {
+             _OutputCode = "";
             // Declation
             var strDeclear = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "template\\" + "DECLEAR");
             _OutputCode += strDeclear;
